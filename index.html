@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: pink;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      width: 500px;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .bear {
+      width: 140px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    button {
+      padding: 15px 35px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yesBtn {
+      background: hotpink;
+      color: white;
+    }
+
+    #noBtn {
+      background: lightgray;
+      color: black;
+    }
+
+    .yay {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .yay h2 {
+      font-size: 32px;
+    }
+
+    .yay img {
+      width: 220px;
+      border-radius: 15px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+
+    <img src="images/bear.png" class="bear">
+
+    <h1 id="questionText">Hey will you be my valentine?</h1>
+
+    <div class="buttons" id="btns">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div class="yay" id="yayMessage">
+      <h2>YAYYY 🎉</h2>
+      <img src="images/cabybara.jpg">
+    </div>
+
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const yayMessage = document.getElementById("yayMessage");
+
+    document.addEventListener("mousemove", (e) => {
+      const rect = noBtn.getBoundingClientRect();
+
+      let distance = Math.hypot(
+        e.clientX - (rect.left + rect.width / 2),
+        e.clientY - (rect.top + rect.height / 2)
+      );
+
+      if (distance < 100) {
+        let x = Math.random() * 600 - 300;
+        let y = Math.random() * 400 - 200;
+
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        noBtn.style.transition = "0.05s";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+
+      yayMessage.style.display = "block";
+
+      document.querySelector(".bear").style.display = "none";
+      document.getElementById("questionText").style.display = "none";
+      document.getElementById("btns").style.display = "none";
+
+    });
+  </script>
+
+</body>
+</html>
